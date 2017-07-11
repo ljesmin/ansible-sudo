@@ -1,0 +1,7 @@
+- name: Set up sudo group
+  lineinfile:
+    path: /etc/sudoers
+    state: present
+    regexp: '^%{{ sudo_group_name }} ALL='
+    line: '%{{ sudo_group_name }} ALL=(ALL) NOPASSWD: ALL'
+    validate: 'visudo -cf %s'
